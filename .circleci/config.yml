@@ -58,9 +58,12 @@ jobs:
       #     prefix: coverage
       - store_test_results: # for display in Test Summary: https://circleci.com/docs/2.0/collect-test-data/
           path: reports/junit/js-test-results.xml
+    - run:
+          name: Compress Artifacts
+          command: tar -cvf dist.tar dist
       - store_artifacts:
-          path: dist
-          destination: artifact-file
+          path: dist.tar
+          destination: dist
   deploy:
     docker:
       - image: wecs/circle-ci-gcloud-node:0.1.0
