@@ -49,6 +49,9 @@ jobs:
           name: Run build
           command: |
             npm run build
+      - run:
+          name: Compress Artifacts
+          command: tar -cvf dist.tar dist
       - store_artifacts: # special step to save test results as as artifact
           # Upload test summary for display in Artifacts: https://circleci.com/docs/2.0/artifacts/ 
           path: reports/junit/js-test-results.xml
@@ -59,7 +62,7 @@ jobs:
       - store_test_results: # for display in Test Summary: https://circleci.com/docs/2.0/collect-test-data/
           path: reports/junit/js-test-results.xml
       - store_artifacts:
-          path: dist
+          path: dist.tar
           destination: artifact-file
   deploy:
     docker:
