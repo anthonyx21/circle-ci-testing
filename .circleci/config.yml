@@ -38,9 +38,9 @@ jobs:
       #     command: tar -cvf dist.tar dist
       # - store_test_results:
       #     path: reports/junit/js-test-results.xml
-      - store_artifacts:
-          path: dist.tar
-          destination: artifact-file
+      # - store_artifacts:
+      #     path: dist.tar
+      #     destination: artifact-file
       - run:
           name: Build and Deploy
           command: |
