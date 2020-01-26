@@ -6,6 +6,7 @@ jobs:
     working_directory: ~/workspace
     environment:
       DEPLOYMENT_NAME: ci-cd
+      JEST_JUNIT_OUTPUT_DIR: "reports/junit/js-test-results.xml"
       # PROJECT_ID: ci-cd-217118
       # CLUSTER_NAME: ci-cd
       # CLUSTER_NAME_STAG: ci-cd-stag
@@ -50,13 +51,13 @@ jobs:
             npm run build
       - store_artifacts: # special step to save test results as as artifact
           # Upload test summary for display in Artifacts: https://circleci.com/docs/2.0/artifacts/ 
-          path: junit.xml
+          path: reports/junit/js-test-results.xml
           prefix: tests
       # - store_artifacts: # for display in Artifacts: https://circleci.com/docs/2.0/artifacts/ 
       #     path: coverage
       #     prefix: coverage
       - store_test_results: # for display in Test Summary: https://circleci.com/docs/2.0/collect-test-data/
-          path: junit.xml
+          path: reports/junit/js-test-results.xml
       - store_artifacts:
           path: dist
           destination: artifact-file

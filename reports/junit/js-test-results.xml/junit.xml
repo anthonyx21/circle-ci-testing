@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="jest tests" tests="2" failures="0" time="1.296">
+  <testsuite name="HelloWorld.vue" errors="0" failures="0" skipped="0" timestamp="2020-01-26T03:41:14" time="0.633" tests="1">
+    <testcase classname="HelloWorld.vue renders props.msg when passed" name="HelloWorld.vue renders props.msg when passed" time="0.022">
+    </testcase>
+  </testsuite>
+  <testsuite name="HelloWorld.vue" errors="0" failures="0" skipped="0" timestamp="2020-01-26T03:41:14" time="0.075" tests="1">
+    <testcase classname="HelloWorld.vue renders props.msg when passed" name="HelloWorld.vue renders props.msg when passed" time="0.006">
+    </testcase>
+  </testsuite>
+</testsuites>
