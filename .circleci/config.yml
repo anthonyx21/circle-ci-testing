@@ -56,7 +56,7 @@ jobs:
       #     path: coverage
       #     prefix: coverage
       - store_test_results: # for display in Test Summary: https://circleci.com/docs/2.0/collect-test-data/
-          path: test-results.xml
+          path: junit.xml
       # - store_artifacts:
       #     path: ./dist
       #     destination: artifact-file
