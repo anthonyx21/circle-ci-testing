@@ -29,6 +29,10 @@ jobs:
           name: Install node packages
           command: |
             npm install
+      # - run:
+      #     name: Start app
+      #     command: |
+      #       npm start &
       - run:
           name: Run tests
           command: |
@@ -48,7 +52,14 @@ jobs:
       - run:
           name: Compress Artifacts
           command: tar -cvf dist.tar dist
-      - store_test_results:
+      # - store_artifacts: # special step to save test results as as artifact
+      #     # Upload test summary for display in Artifacts: https://circleci.com/docs/2.0/artifacts/ 
+      #     path: reports/junit/js-test-results.xml
+      #     prefix: tests
+      # - store_artifacts: # for display in Artifacts: https://circleci.com/docs/2.0/artifacts/ 
+      #     path: coverage
+      #     prefix: coverage
+      - store_test_results: # for display in Test Summary: https://circleci.com/docs/2.0/collect-test-data/
           path: reports/junit/js-test-results.xml
       - store_artifacts:
           path: dist.tar
