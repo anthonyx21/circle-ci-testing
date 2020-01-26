@@ -1,11 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuites name="jest tests" tests="2" failures="0" time="1.296">
-  <testsuite name="HelloWorld.vue" errors="0" failures="0" skipped="0" timestamp="2020-01-26T03:41:14" time="0.633" tests="1">
-    <testcase classname="HelloWorld.vue renders props.msg when passed" name="HelloWorld.vue renders props.msg when passed" time="0.022">
+<testsuites name="jest tests" tests="2" failures="1" time="1.66">
+  <testsuite name="HelloWorld.vue" errors="0" failures="0" skipped="0" timestamp="2020-01-26T03:43:25" time="0.632" tests="1">
+    <testcase classname="HelloWorld.vue renders props.msg when passed" name="HelloWorld.vue renders props.msg when passed" time="0.021">
     </testcase>
   </testsuite>
-  <testsuite name="HelloWorld.vue" errors="0" failures="0" skipped="0" timestamp="2020-01-26T03:41:14" time="0.075" tests="1">
-    <testcase classname="HelloWorld.vue renders props.msg when passed" name="HelloWorld.vue renders props.msg when passed" time="0.006">
+  <testsuite name="HelloWorld.vue" errors="0" failures="1" skipped="0" timestamp="2020-01-26T03:43:25" time="0.392" tests="1">
+    <testcase classname="HelloWorld.vue renders props.msg when passed" name="HelloWorld.vue renders props.msg when passed" time="0.008">
+      <failure>Error: expect(received).toMatch(expected)
+
+Expected substring: &quot;new messagex&quot;
+Received string:    &quot;new message·
+    For a guide and recipes on how to configure / customize this project,
+    check out the
+    vue-cli documentation.
+   Installed CLI Plugins babel router vuex eslint unit-jest e2e-nightwatch Essential Links Core Docs Forum Community Chat Twitter News Ecosystem vue-router vuex vue-devtools vue-loader awesome-vue&quot;
+    at Object.&lt;anonymous&gt; (/home/anthony/projects/research/vuetest2/tests/unit/example.spec.js:10:28)
+    at Object.asyncJestTest (/home/anthony/projects/research/vuetest2/node_modules/jest-jasmine2/build/jasmineAsyncInstall.js:102:37)
+    at /home/anthony/projects/research/vuetest2/node_modules/jest-jasmine2/build/queueRunner.js:43:12
+    at new Promise (&lt;anonymous&gt;)
+    at mapper (/home/anthony/projects/research/vuetest2/node_modules/jest-jasmine2/build/queueRunner.js:26:19)
+    at /home/anthony/projects/research/vuetest2/node_modules/jest-jasmine2/build/queueRunner.js:73:41</failure>
     </testcase>
   </testsuite>
 </testsuites>
