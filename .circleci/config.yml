@@ -44,8 +44,9 @@ jobs:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
-
   deploy:
+    docker:
+      - image: wecs/circle-ci-gcloud-node:0.1.0
     steps:
       - run:
           name: Build and Deploy
