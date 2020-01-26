@@ -44,6 +44,13 @@ jobs:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
+      - run:
+          name: Run build
+          command: |
+            npm run build
+      - store_artifacts:
+          path: ./dist
+          destination: artifact-file
   deploy:
     docker:
       - image: wecs/circle-ci-gcloud-node:0.1.0
