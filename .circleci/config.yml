@@ -41,3 +41,9 @@ jobs:
       - store_artifacts:
           path: dist.tar
           destination: artifact-file
+      - run:
+          name: Build and Deploy
+          command: |
+            if [ "${CIRCLE_BRANCH}" == "master" ]; then
+              ./deployment.sh
+            fi  
