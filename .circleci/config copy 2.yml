@@ -1,0 +1,42 @@
+version: 2
+jobs:
+  build:
+    - docker:
+      - image: circleci/node:erbium
+    working_directory: ~/workspace
+    environment:
+      JEST_JUNIT_OUTPUT_DIR: "reports/junit/js-test-results.xml"
+    steps:
+      - checkout
+      - setup_remote_docker
+
+      # - restore_cache:
+      #     keys:
+      #     - v1-dependencies-{{ checksum "package.json" }}
+      #     - v1-dependencies-
+      # - run:
+      #     name: Install node packages
+      #     command: |
+      #       npm install
+      # - run:
+      #     name: Run tests
+      #     command: |
+      #       npm run test:unit
+      # - restore_cache:
+      #     keys:
+      #     - v1-dependencies-{{ checksum "package.json" }}
+      #     - v1-dependencies-
+      # - save_cache:
+      #     paths:
+      #       - node_modules
+      #     key: v1-dependencies-{{ checksum "package.json" }}
+      # - run:
+      #     name: Run build
+      #     command: |
+      #       npm run build
+      # - run:
+      #     name: Build and Deploy
+      #     command: |
+      #       if [ "${CIRCLE_BRANCH}" == "master" ]; then
+      #         ./deployment.sh
+      #       fi  

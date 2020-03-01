@@ -2,48 +2,53 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/node:erbium
-    working_directory: ~/workspace
+      - image: ubuntu:14.04
     environment:
-      JEST_JUNIT_OUTPUT_DIR: "reports/junit/js-test-results.xml"
+      CIRCLE_COMPARE_URL: << pipeline.project.git_url >>/compare/<< pipeline.git.base_revision >>..<<pipeline.git.revision>>
+    working_directory: /tmp/my-project
     steps:
-      - checkout
-      - setup_remote_docker
-      - restore_cache:
-          keys:
-          - v1-dependencies-{{ checksum "package.json" }}
-          - v1-dependencies-
-      - run:
-          name: Install node packages
-          command: |
-            npm install
-      - run:
-          name: Run tests
-          command: |
-            npm run test:unit
-      - restore_cache:
-          keys:
-          - v1-dependencies-{{ checksum "package.json" }}
-          - v1-dependencies-
-      - save_cache:
-          paths:
-            - node_modules
-          key: v1-dependencies-{{ checksum "package.json" }}
-      - run:
-          name: Run build
-          command: |
-            npm run build
-      # - run:
-      #     name: Compress Artifacts
-      #     command: tar -cvf dist.tar dist
-      # - store_test_results:
-      #     path: reports/junit/js-test-results.xml
-      # - store_artifacts:
-      #     path: dist.tar
-      #     destination: artifact-file
-      - run:
-          name: Build and Deploy
-          command: |
-            if [ "${CIRCLE_BRANCH}" == "master" ]; then
-              ./deployment.sh
-            fi  
+      - run: echo "BUILD -- This is pipeline ID << pipeline.id >>"
+      - run: echo $CIRCLE_COMPARE_URL
+
+  testing-2:
+    docker:
+      - image: ubuntu:14.04
+    environment:
+      CIRCLE_COMPARE_URL: << pipeline.project.git_url >>/compare/<< pipeline.git.base_revision >>..<<pipeline.git.revision>>
+    working_directory: /tmp/my-project
+    steps:
+      - run: echo "TESTING-2 -- This is pipeline ID << pipeline.id >>"
+      - run: echo $CIRCLE_COMPARE_URL
+
+  testing-3:
+    docker:
+      - image: ubuntu:14.04
+    environment:
+      CIRCLE_COMPARE_URL: << pipeline.project.git_url >>/compare/<< pipeline.git.base_revision >>..<<pipeline.git.revision>>
+    working_directory: /tmp/my-project
+    steps:
+      - run: echo "TESTING-3 -- This is pipeline ID << pipeline.id >>"
+      - run: echo $CIRCLE_COMPARE_URL
+
+workflows:
+  version: 2
+  build-deploy:
+    jobs:
+      - build:
+          filters:
+            branches:
+              ignore:
+                - develop
+                - /feature-.*/
+      - testing-2:
+          requires:
+            - build
+          filters:
+            branches:
+              only: master
+      - testing-3:
+          requires:
+            - testing-3
+          filters:
+            branches:
+              only: staging
