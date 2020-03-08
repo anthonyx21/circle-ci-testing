@@ -48,7 +48,7 @@ workflows:
               only: master
       - testing-3:
           requires:
-            - testing-3
+            - testing-2
           filters:
             branches:
               only: staging
