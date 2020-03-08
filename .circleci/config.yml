@@ -14,6 +14,7 @@ jobs:
     steps:
       - run: echo "BUILD -- This is pipeline ID << pipeline.id >>"
       - run: echo $CIRCLE_COMPARE_URL
+      - run: mkdir -p workspace
       - run: echo "Hello, world!" > workspace/echo-output
       # Persist the specified paths (workspace/echo-output) into the workspace for use in downstream job.
       - persist_to_workspace:
@@ -64,6 +65,7 @@ workflows:
             branches:
               only: master
       - testing-3:
+          type: approval
           requires:
             - testing-2
           filters:
