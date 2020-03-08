@@ -26,8 +26,7 @@ jobs:
   testing-2:
     executor: my-executor
     steps:
-      - run: echo "TESTING-2 -- This is pipeline ID << pipeline.id >>"
-      - run: echo $CIRCLE_COMPARE_URL
+      - run: echo "TESTING-2 -- This is pipeline ID"
       
       - attach_workspace:
         # Must be absolute path or relative path from working_directory
@@ -43,8 +42,7 @@ jobs:
   testing-3:
     executor: my-executor
     steps:
-      - run: echo "TESTING-3 -- This is pipeline ID << pipeline.id >>"
-      - run: echo $CIRCLE_COMPARE_URL
+      - run: echo "TESTING-3 -- This is pipeline ID"
 
 workflows:
   version: 2
